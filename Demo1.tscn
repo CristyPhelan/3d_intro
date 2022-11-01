@@ -1,9 +1,19 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Demo1.gd" type="Script" id=2]
+[ext_resource path="res://textures/Stylized_Stone_Floor_005_normal.jpg" type="Texture" id=3]
+[ext_resource path="res://textures/Stylized_Stone_Floor_005_basecolor.jpg" type="Texture" id=4]
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_texture = ExtResource( 4 )
+normal_enabled = true
+normal_scale = 3.42
+normal_texture = ExtResource( 3 )
+uv1_scale = Vector3( 3, 3, 3 )
 
 [sub_resource type="PlaneMesh" id=2]
+material = SubResource( 7 )
 size = Vector2( 50, 50 )
 
 [sub_resource type="ConcavePolygonShape" id=6]
@@ -55,3 +65,8 @@ mesh = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.947255, 0, -0.320481, 0, 1, 0, 0.320481, 0, 0.947255, 0, 9.673, -1.09257 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.829876, 0.557948, 0, -0.557948, 0.829876, 0, 16.6432, 18.3456 )
+light_energy = 4.0
+shadow_enabled = true
