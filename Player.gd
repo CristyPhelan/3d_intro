@@ -11,11 +11,14 @@ func _physics_process(delta):
 	velocity += gravity * delta
 	var vy = velocity.y
 	velocity = Vector3.ZERO
-	var vz = Input.get_axis("forward", "back")
-	velocity += transform.basis.z * vz * speed
-	var vx = Input.get_axis("left", "right")
-	velocity += transform.basis.x * vx * speed
-	
+	var in2 = Input.get_vector("left", "right", "forward", "back")
+#	var vz = Input.get_axis("forward", "back")
+#	velocity += transform.basis.z * vz * speed
+#	var vx = Input.get_axis("left", "right")
+#	velocity += transform.basis.x * vx * speed
+	in2 = Vector3(in2.x, 0, in2.y)
+	velocity = transform.basis.xform(in2) * speed
+		
 	velocity.y = vy
 	velocity = move_and_slide(velocity, Vector3.UP)
 	if Input.is_action_just_pressed("jump") and is_on_floor():
